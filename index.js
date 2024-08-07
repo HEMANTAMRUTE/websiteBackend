@@ -8,15 +8,15 @@ const router = require('./Routes/index');
 const app = express();
 const port = 5000;
 
-// const corsOptions = {
-//   origin: 'http://localhost:3000', // Allow only this origin
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   allowedHeaders: 'Content-Type,Authorization',
-//   optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://main--internshalaclon.netlify.app'], // Allow only this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 // Middleware
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
