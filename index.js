@@ -29,7 +29,11 @@ app.use('/api', router);
 
 // Database connection
 connect();
-
+app.use((req,res,next)=>{
+  req.header("Acess-Control-Allow-Origin","*")
+  res.header("Acess-Control-Allow-Origin","*")
+  next()
+})
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
