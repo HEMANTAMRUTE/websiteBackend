@@ -8,6 +8,7 @@ const mongoose=require("mongoose")
     aboutCompany:String,
     aboutInternship:String,
     Whocanapply: String,
+    numberOfopning:String,
     perks: Array,
     AdditionalInfo:String,
     stipend: String,
