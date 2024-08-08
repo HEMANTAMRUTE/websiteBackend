@@ -13,6 +13,7 @@ router.post("/",async (req,res)=>{
         category: req.body.category,
         aboutCompany:req.body.aboutCompany,
         aboutInternship:req.body.aboutInternship,
+        numberOfOpening:req.body.numberOfOpening,
         Whocanapply: req.body.Whocanapply,
         perks: req.body.perks,
         AdditionalInfo:req.body.AdditionalInfo,
