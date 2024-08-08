@@ -9,15 +9,15 @@ router.post("/",async (req,res)=>{
         title: req.body.title,
         company: req.body.company,
         location: req.body.location,
-        Experience: req.body.experience,
+        Experience: req.body.Experience,
         category: req.body.category,
         aboutCompany:req.body.aboutCompany,
-        aboutInternship:req.body.aboutInternship,
+        aboutJob:req.body.aboutInternship,
         numberOfOpening:req.body.numberOfOpening,
         Whocanapply: req.body.Whocanapply,
         perks: req.body.perks,
         AdditionalInfo:req.body.AdditionalInfo,
-        CTC: req.body.ctc,
+        CTC: req.body.CTC,
         StartDate:req.body.StartDate,
     })
     await JobData.save().then((data)=>{
