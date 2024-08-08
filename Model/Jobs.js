@@ -7,7 +7,7 @@ const mongoose=require("mongoose")
     category: String,
     aboutCompany:String,
     aboutJob:String,
-    numberOfopning:String,
+    numberOfOpening:String,
     Whocanapply: String,
     perks: Array,
     AdditionalInfo:String,
