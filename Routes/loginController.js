@@ -1,6 +1,8 @@
 const Login = require('../Model/Login');
 const express =require("express")
+
 const router= express.Router();
+
 router.post('/storeUserInfo' , async (req, res) => {
   try {
     const { userInfo } = req.body;
