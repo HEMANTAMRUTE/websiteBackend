@@ -8,12 +8,15 @@ const router = require('./Routes/index');
 const app = express();
 const port = 5000;
 
-const corsOptions = {
-  origin: ['http://localhost:3000', 'https://main--internshalaclon.netlify.app'], 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://main--internshalaclon.netlify.app"
+  ],
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
 // Middleware
 app.use(cors(corsOptions));
