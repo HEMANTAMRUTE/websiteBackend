@@ -11,8 +11,23 @@ const mongoose=require("mongoose")
     user:Object,
     status:{
         type:String,
-        enum:["pending","accepted","rejected"],
+        enum:["pending","accepted","rejected","interview"],
         default:"pending"
+    },
+    time:{
+        type:String,
+    default:null},
+    room:{
+        type:String,
+    default:null
+    },
+    link:{
+        type:String,
+    default:null
+    },
+    date:{
+        type:String,
+    default:null
     }
  })
  module.exports=mongoose.model("Application",applicationShcema)

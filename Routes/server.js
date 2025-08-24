@@ -4,11 +4,6 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const router= express.Router();
 
-
-
-
-
-
 const otps = {};
 
 router.post('/generate-otp', (req, res) => {

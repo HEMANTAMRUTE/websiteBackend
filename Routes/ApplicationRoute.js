@@ -43,36 +43,47 @@ router.get("/:id", async (req,res)=>{
 })
 
 router.put("/:id", async (req, res) => {
-    const { id } = req.params;
-    const { action } = req.body;
+  const { id } = req.params;
+  const { action,date, time, room ,link} = req.body; // 👈 also accept time + room
 
-    let status;
+  let status;
 
-    if (action === "accepted") {
-        status = "accepted";
-    } else if (action === "rejected") {
-        status = "rejected";
-    } else {
-        res.status(400).json({ error: "Invalid action" });
-        return; 
+  if (action === "accepted") {
+    status = "accepted";
+  } else if (action === "rejected") {
+    status = "rejected";
+  } else if (action === "interview") {
+    status = "interview";
+  } else {
+    return res.status(400).json({ error: "Invalid action" });
+  }
+
+  try {
+    const updateFields = { status };
+
+    // if interview, update time + room too
+    if (status === "interview") {
+      if (time) updateFields.time = time;
+      if(date) updateFields.date = date;
+      if (room) updateFields.room = room;
+      if(link) updateFields.link = link;
     }
 
-    try {
-        const updateApplication = await application.findByIdAndUpdate(
-            id,
-            { $set: { status } },
-            { new: true }
-        );
+    const updateApplication = await application.findByIdAndUpdate(
+      id,
+      { $set: updateFields },
+      { new: true }
+    );
 
-        if (!updateApplication) {
-            res.status(404).json({ error: "Not able to update the application" });
-            return; 
-        }
-
-        res.status(200).json({ success: true, data: updateApplication });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "Internal server error" });
+    if (!updateApplication) {
+      return res.status(404).json({ error: "Not able to update the application" });
     }
+
+    res.status(200).json({ success: true, data: updateApplication });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
+
 module.exports=router
