@@ -1,43 +1,31 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const { connect } = require("./db");
-const router = require("./Routes/index");
+const bodyParser=require("body-parser")
+const express=require("express")
+const app=express();
+const path=require("path")
+const cors=require("cors");
+const {connect}=require("./db")
+const router=require("./Routes/index")
+// const { browserAuthentication, deviceAndTimeBasedAccess } = require('./middleware/authentication');
+const port =5000
 
-const app = express();
+app.use(cors())
+app.use(bodyParser.json({limit:"50mb"}))
+app.use(bodyParser.urlencoded({extended:true,limit:"50mb"}))
+app.use(express.json())
 
-// ✅ Use Render's dynamic PORT, fallback to 5000 locally
-const PORT = process.env.PORT || 5000;
-
-// ✅ Define CORS options once
-const corsOptions = {
-  origin: [
-    "http://localhost:3000",
-    "https://main--internshalaclon.netlify.app"
-  ],
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-};
-
-// ✅ Apply CORS middleware
-app.use(cors(corsOptions));
-
-// ✅ Middleware
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-app.use(express.json());
-
-// ✅ Routes
-app.get("/", (req, res) => {
-  res.send("Hello, this is my backend");
-});
-app.use("/api", router);
-
-// ✅ Database connection
+app.get("/",(req,res)=>{
+    res.send("Hello This is My backend")
+})
+// app.use(browserAuthentication);
+// app.use(deviceAndTimeBasedAccess);
+app.use("/api",router)
 connect();
+ app.use((req,res,next)=>{
+    req.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Origin","*")
+    next()
+ })
 
-// ✅ Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(port,()=>{
+    console.log("server is running on port ")
+})
