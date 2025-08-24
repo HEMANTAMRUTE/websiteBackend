@@ -29,11 +29,13 @@ app.use('/api', router);
 
 // Database connection
 connect();
-app.use((req,res,next)=>{
-  req.header("Acess-Control-Allow-Origin","*")
-  res.header("Acess-Control-Allow-Origin","*")
-  next()
-})
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://main--internshalaclon.netlify.app");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  next();
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
