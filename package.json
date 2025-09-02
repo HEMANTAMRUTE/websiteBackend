@@ -4,7 +4,7 @@
   "description": "this is a backend of internshala ",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node server.js"
   },
   "author": "ankit",
   "license": "ISC",

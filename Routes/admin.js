@@ -8,7 +8,7 @@ const adminPassword='admin'
 // For admin login
 router.post("/adminLogin", (req,res)=>{
     const {username,password}=req.body
-    if (username===adminUsername || password===adminPassword) {
+    if(username===adminUsername || password===adminPassword) {
         res.send("Admin is here")
     }
     else{
